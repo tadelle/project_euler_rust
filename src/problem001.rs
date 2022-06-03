@@ -9,20 +9,21 @@ use super::problems::Problem;
 
 pub struct Problema;
 
-impl Problem for Problema{
-
-    fn new() -> Problema { Problema { }}
+impl Problem for Problema {
+    fn new() -> Problema {
+        Problema {}
+    }
 
     fn get_title(&self) -> String {
         String::from("Multiples of 3 and 5")
     }
 
     fn get_result(&self) -> i64 {
-        get_multiples_of_3_and_5()
+        get_multiples_of_3_and_5() as i64
     }
 }
 
-fn get_multiples_of_3_and_5() -> i64 {
+fn get_multiples_of_3_and_5() -> i32 {
     let mut counter = 1;
     let mut sum = 0;
     while counter < 1000 {
@@ -46,12 +47,12 @@ mod test001 {
     use super::*;
 
     #[test]
-    fn test_get_result(){
+    fn test_get_result() {
         assert_eq!(Problema::new().get_result(), 233168)
     }
 
     #[test]
-    fn test_get_title(){
+    fn test_get_title() {
         assert_eq!(Problema::new().get_title(), "Multiples of 3 and 5")
     }
 }

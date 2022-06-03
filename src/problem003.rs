@@ -1,15 +1,16 @@
 //! Largest prime factor
-//! 
+//!
 //! The prime factors of 13195 are 5, 7, 13 and 29.
-//! 
+//!
 //! What is the largest prime factor of the number 600851475143 ?
 use super::problems::Problem;
 
 pub struct Problema;
 
-impl Problem for Problema{
-
-    fn new() -> Problema { Problema { }}
+impl Problem for Problema {
+    fn new() -> Problema {
+        Problema {}
+    }
 
     fn get_title(&self) -> String {
         String::from("Largest prime factor")
@@ -26,7 +27,7 @@ fn get_largest_prime_factor() -> i64 {
 
     while number > 1 {
         divisor += 2;
-        while number % divisor == 0{
+        while number % divisor == 0 {
             number /= divisor;
         }
     }
@@ -36,14 +37,14 @@ fn get_largest_prime_factor() -> i64 {
 #[cfg(test)]
 mod test003 {
     use super::*;
-    
+
     #[test]
-    fn test_get_result(){
+    fn test_get_result() {
         assert_eq!(Problema::new().get_result(), 6857)
     }
 
     #[test]
-    fn test_get_title(){
+    fn test_get_title() {
         assert_eq!(Problema::new().get_title(), "Largest prime factor")
     }
 }
