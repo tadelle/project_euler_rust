@@ -24,23 +24,11 @@ impl Problem for Problema {
 }
 
 fn get_multiples_of_3_and_5() -> i32 {
-    let mut counter = 1;
-    let mut sum = 0;
-    while counter < 1000 {
-        if counter % 3 == 0 || counter % 5 == 0 {
-            sum += counter;
-        }
-        counter += 1;
-    }
-    sum
+    (1..1000)
+        .into_iter()
+        .filter(|number| number % 3 == 0 || number % 5 == 0)
+        .sum::<i32>()
 }
-
-// fn get_multiples_of_3_and_5() -> i32 {
-//     (1..1000)
-//         .into_iter()
-//         .filter(|number| number % 3 == 0 || number % 5 == 0)
-//         .sum::<i32>()
-// }
 
 #[cfg(test)]
 mod test001 {
