@@ -11,12 +11,15 @@ mod problem010;
 mod problem011;
 mod problem012;
 mod problem013;
+mod problem014;
+mod problem015;
+mod problem016;
 mod problem028;
 mod problem034;
 mod problem039;
 mod problem048;
+mod problem051;
 mod problems;
-mod problem014;
 
 use colored::*;
 use num_cpus;
@@ -41,10 +44,13 @@ fn get_result(number: i32) -> i64 {
         12 => problem012::Problema::new().get_result(),
         13 => problem013::Problema::new().get_result(),
         14 => problem014::Problema::new().get_result(),
+        15 => problem015::Problema::new().get_result(),
+        16 => problem016::Problema::new().get_result(),
         28 => problem028::Problema::new().get_result(),
         34 => problem034::Problema::new().get_result(),
         39 => problem039::Problema::new().get_result(),
         48 => problem048::Problema::new().get_result(),
+        51 => problem051::Problema::new().get_result(),
         _ => 0,
     }
 }
@@ -65,10 +71,13 @@ fn get_title(number: i32) -> String {
         12 => problem012::Problema::new().get_title(),
         13 => problem013::Problema::new().get_title(),
         14 => problem014::Problema::new().get_title(),
+        15 => problem015::Problema::new().get_title(),
+        16 => problem016::Problema::new().get_title(),
         28 => problem028::Problema::new().get_title(),
         34 => problem034::Problema::new().get_title(),
         39 => problem039::Problema::new().get_title(),
         48 => problem048::Problema::new().get_title(),
+        51 => problem051::Problema::new().get_title(),
         _ => String::from("Not implemented yet!"),
     }
 }
