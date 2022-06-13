@@ -3,7 +3,9 @@
 //! The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 //!
 //! Find the sum of all the primes below two million.
-use super::problems::{is_prime, Problem};
+use super::problems::{Problem, is_prime};
+use num_cpus;
+use std::thread::{self, JoinHandle};
 
 pub struct Problema;
 
@@ -21,15 +23,38 @@ impl Problem for Problema {
     }
 }
 
-fn get_summation_of_primes() -> i64 {
-    let mut result: i64 = 2;
-    let mut counter: i32 = 3;
+fn get_parcial_sum(ini: i32, end: i32) -> i64 {
+    (ini..end)
+        .filter(|num| is_prime(*num))
+        .map(|num| num as i64)
+        .sum::<i64>()
+}
 
-    while counter < 2_000_000 {
-        if is_prime(counter) {
-            result += counter as i64;
-        }
-        counter += 2;
+fn get_summation_of_primes() -> i64 {
+    let limit: i32 = 2_000_000;
+    let cores = num_cpus::get() as i32 * 4;
+    let chunck = limit / cores;
+    let mut vec_handle: Vec<JoinHandle<i64>> = Vec::new();
+
+    let mut counter = 0;
+    while counter < cores {
+        let ini: i32 = if counter == 0 { 2 } else { chunck * counter };
+        let end: i32 = if counter == cores - 1 {
+            limit
+        } else {
+            chunck * (counter + 1)
+        };
+
+        vec_handle.push(thread::spawn(move || {
+            get_parcial_sum(ini, end)
+        }));
+
+        counter += 1;
+    }
+
+    let mut result = 0;
+    for handle in vec_handle {
+        result += handle.join().unwrap_or(0);
     }
 
     result
