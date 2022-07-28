@@ -14,7 +14,7 @@
 //! Find the smallest prime which, by replacing part of the number
 //! (not necessarily adjacent digits) with the same digit,
 //! is part of an eight prime value family.
-use super::problems::{Problem, is_prime};
+use super::problems::{get_primes_erastostenes, Problem};
 use std::collections::HashMap;
 
 pub struct Problema;
@@ -42,18 +42,26 @@ fn get_prime_digit_replacements() -> i32 {
     loop {
         let patterns = get_pattern(num_digits);
 
+        for prime in get_primes_erastostenes(end_number) {
+            primes.insert(prime, true);
+        }
+
         for number in (ini_number..end_number).step_by(2) {
             let vec_number = get_array_number(number);
 
             for num_replaced_digits in 1..num_digits {
-
-                let list_patterns = patterns.clone()
+                let list_patterns = patterns
+                    .clone()
                     .into_iter()
                     .filter(|vec| vec.into_iter().sum::<i32>() == num_replaced_digits as i32)
                     .collect::<Vec<Vec<i32>>>();
 
                 for pattern in list_patterns {
-                    let result = get_smallest_primes_of_eight(pattern.clone(), vec_number.clone(), &mut primes);
+                    let result = get_smallest_primes_of_eight(
+                        pattern.clone(),
+                        vec_number.clone(),
+                        &mut primes,
+                    );
                     if result > 0 {
                         return result;
                     }
@@ -78,17 +86,17 @@ fn get_pattern(num_digits: usize) -> Vec<Vec<i32>> {
         let str_bin = format!("{number:010b}")[(10 - num_digits)..].to_string();
         vec_bin.push(
             str_bin
-            .chars()
-            .into_iter()
-            .map(|digit| (digit as i32) - ('0' as i32))
-            .collect::<Vec<_>>()
+                .chars()
+                .into_iter()
+                .map(|digit| (digit as i32) - ('0' as i32))
+                .collect::<Vec<_>>(),
         );
     }
 
     vec_bin.clone()
 }
 
-fn get_array_number(number: i32) -> Vec<i32>{
+fn get_array_number(number: i32) -> Vec<i32> {
     number
         .to_string()
         .chars()
@@ -97,7 +105,11 @@ fn get_array_number(number: i32) -> Vec<i32>{
         .collect::<Vec<_>>()
 }
 
-fn get_smallest_primes_of_eight(pattern: Vec<i32>, number: Vec<i32>, map: &mut HashMap<i32, bool>) -> i32 {
+fn get_smallest_primes_of_eight(
+    pattern: Vec<i32>,
+    number: Vec<i32>,
+    map: &mut HashMap<i32, bool>,
+) -> i32 {
     let first_digit = pattern[0];
     let mut counter = 0;
     let mut smallest = 0;
@@ -106,22 +118,27 @@ fn get_smallest_primes_of_eight(pattern: Vec<i32>, number: Vec<i32>, map: &mut H
         let mut new_number = 0;
         for index in 0..number.len() {
             new_number *= 10;
-            new_number += if pattern[index] == 1 { digit } else { number[index] };
+            new_number += if pattern[index] == 1 {
+                digit
+            } else {
+                number[index]
+            };
         }
-        if map.contains_key(&new_number) || is_prime(new_number) {
+        if map.contains_key(&new_number) {
             counter += 1;
             if smallest == 0 {
                 smallest = new_number;
-            }
-            if !map.contains_key(&new_number) {
-                map.insert(new_number, true);
             }
         }
         if digit > 2 && smallest == 0 {
             return 0;
         }
     }
-    if counter >= 8 { smallest } else { 0 }
+    if counter >= 8 {
+        smallest
+    } else {
+        0
+    }
 }
 
 #[cfg(test)]

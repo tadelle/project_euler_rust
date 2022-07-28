@@ -56,12 +56,16 @@ fn get_highly_divisible_triangular_number() -> i32 {
 }
 
 fn get_number_of_divisors(number: i32) -> i32 {
-    let limit = (number as f64).sqrt() as i32 + 1;
+    let limit = (number as f64).sqrt() as i32;
     let mut counter = 2;
 
-    for index in 2..limit {
+    if limit * limit == number {
+        counter -= 1
+    }
+
+    for index in 2..(limit + 1) {
         if number % index == 0 {
-            counter += if number / index == index { 1 } else { 2 };
+            counter += 2;
         }
     }
     counter

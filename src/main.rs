@@ -14,12 +14,15 @@ mod problem013;
 mod problem014;
 mod problem015;
 mod problem016;
+mod problem017;
 mod problem028;
 mod problem034;
 mod problem039;
 mod problem048;
 mod problem051;
 mod problems;
+mod problem018;
+mod problem067;
 
 use colored::*;
 use num_cpus;
@@ -46,11 +49,14 @@ fn get_result(number: i32) -> i64 {
         14 => problem014::Problema::new().get_result(),
         15 => problem015::Problema::new().get_result(),
         16 => problem016::Problema::new().get_result(),
+        17 => problem017::Problema::new().get_result(),
+        18 => problem018::Problema::new().get_result(),
         28 => problem028::Problema::new().get_result(),
         34 => problem034::Problema::new().get_result(),
         39 => problem039::Problema::new().get_result(),
         48 => problem048::Problema::new().get_result(),
         51 => problem051::Problema::new().get_result(),
+        67 => problem067::Problema::new().get_result(),
         _ => 0,
     }
 }
@@ -73,18 +79,26 @@ fn get_title(number: i32) -> String {
         14 => problem014::Problema::new().get_title(),
         15 => problem015::Problema::new().get_title(),
         16 => problem016::Problema::new().get_title(),
+        17 => problem017::Problema::new().get_title(),
+        18 => problem018::Problema::new().get_title(),
         28 => problem028::Problema::new().get_title(),
         34 => problem034::Problema::new().get_title(),
         39 => problem039::Problema::new().get_title(),
         48 => problem048::Problema::new().get_title(),
         51 => problem051::Problema::new().get_title(),
+        67 => problem067::Problema::new().get_title(),
         _ => String::from("Not implemented yet!"),
     }
 }
 
 fn print_color(num_problem: i32, title: String, answer: i64, time: Duration, info: bool) {
-    println!("{}", format!("Problem {num_problem} - {title}").green());
-    println!("{}\n", format!("Answer: {}", answer).green());
+    if answer == 0 {
+        println!("{}", format!("Problem {num_problem} - {title}").red());
+        println!("{}\n", "Answer: ".red());
+    } else {
+        println!("{}", format!("Problem {num_problem} - {title}").green());
+        println!("{}\n", format!("Answer: {}", answer).green());
+    }
     if info {
         println!(
             "{}",
