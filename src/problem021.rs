@@ -88,7 +88,7 @@ mod test021 {
 
     #[test]
     fn test_get_result() {
-        assert_eq!(Problema::new().get_result(), 648)
+        assert_eq!(Problema::new().get_result(), 31626)
     }
 
     #[test]
