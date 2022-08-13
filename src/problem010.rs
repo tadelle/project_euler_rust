@@ -3,7 +3,7 @@
 //! The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
 //!
 //! Find the sum of all the primes below two million.
-use super::problems::{get_primes_erastostenes, Problem};
+use super::problems::{get_primes_eratostenes, Problem};
 
 pub struct Problema;
 
@@ -22,7 +22,7 @@ impl Problem for Problema {
 }
 
 fn get_summation_of_primes() -> i64 {
-    get_primes_erastostenes(2_000_000)
+    get_primes_eratostenes(2_000_000)
         .into_iter()
         .map(|prime| prime as i64)
         .sum::<_>()

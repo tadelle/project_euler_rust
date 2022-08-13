@@ -3,7 +3,7 @@
 //! By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
 //!
 //! What is the 10 001st prime number?
-use super::{problems::get_primes_erastostenes, problems::is_prime, problems::Problem};
+use super::{problems::get_primes_eratostenes, problems::is_prime, problems::Problem};
 
 pub struct Problema;
 
@@ -23,7 +23,7 @@ impl Problem for Problema {
 fn get_10001st_prime() -> i32 {
     let limit = 10_001;
 
-    let vec_primes = get_primes_erastostenes(limit * 10);
+    let vec_primes = get_primes_eratostenes(limit * 10);
 
     if vec_primes.len() >= limit as usize {
         vec_primes[(limit - 1) as usize]

@@ -15,14 +15,17 @@ mod problem014;
 mod problem015;
 mod problem016;
 mod problem017;
+mod problem018;
+mod problem019;
+mod problem020;
+mod problem021;
 mod problem028;
 mod problem034;
 mod problem039;
 mod problem048;
 mod problem051;
-mod problems;
-mod problem018;
 mod problem067;
+mod problems;
 
 use colored::*;
 use num_cpus;
@@ -30,6 +33,7 @@ use problems::Problem;
 use std::env::args;
 use std::io;
 use std::time::{Duration, Instant};
+use sysinfo::SystemExt;
 
 fn get_result(number: i32) -> i64 {
     match number {
@@ -51,6 +55,9 @@ fn get_result(number: i32) -> i64 {
         16 => problem016::Problema::new().get_result(),
         17 => problem017::Problema::new().get_result(),
         18 => problem018::Problema::new().get_result(),
+        19 => problem019::Problema::new().get_result(),
+        20 => problem020::Problema::new().get_result(),
+        21 => problem021::Problema::new().get_result(),
         28 => problem028::Problema::new().get_result(),
         34 => problem034::Problema::new().get_result(),
         39 => problem039::Problema::new().get_result(),
@@ -81,6 +88,9 @@ fn get_title(number: i32) -> String {
         16 => problem016::Problema::new().get_title(),
         17 => problem017::Problema::new().get_title(),
         18 => problem018::Problema::new().get_title(),
+        19 => problem019::Problema::new().get_title(),
+        20 => problem020::Problema::new().get_title(),
+        21 => problem021::Problema::new().get_title(),
         28 => problem028::Problema::new().get_title(),
         34 => problem034::Problema::new().get_title(),
         39 => problem039::Problema::new().get_title(),
@@ -124,6 +134,9 @@ fn main() {
 
     println!("Digite o número do problema ou x para sair: ");
     loop {
+        let mut system = sysinfo::System::new();
+        system.refresh_all();
+
         let mut problem_number = String::new();
         io::stdin()
             .read_line(&mut problem_number)
@@ -147,6 +160,7 @@ fn main() {
 
         print!("\x1B[2J\x1B[1;1H");
         print_color(number, title, resultado, tempo, info);
+
         println!("Digite o número do problema ou x para sair: ");
     }
 }

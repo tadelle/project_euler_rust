@@ -25,7 +25,7 @@ pub fn is_prime(number: i32) -> bool {
     true
 }
 
-pub fn get_primes_erastostenes(number: i32) -> Vec<i32> {
+pub fn get_primes_eratostenes(number: i32) -> Vec<i32> {
     let mut primes: Vec<i32> = Vec::new();
     let mut vec_numbers = vec![true; number as usize];
 
@@ -89,8 +89,8 @@ mod test_problems {
     }
 
     #[test]
-    fn test_get_primes_erastostenes() {
-        let sum = get_primes_erastostenes(2_000_000)
+    fn test_get_primes_eratostenes() {
+        let sum = get_primes_eratostenes(2_000_000)
             .into_iter()
             .map(|num| num as i64)
             .sum::<i64>();

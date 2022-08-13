@@ -14,7 +14,7 @@
 //! Find the smallest prime which, by replacing part of the number
 //! (not necessarily adjacent digits) with the same digit,
 //! is part of an eight prime value family.
-use super::problems::{get_primes_erastostenes, Problem};
+use super::problems::{get_primes_eratostenes, Problem};
 use std::collections::HashMap;
 
 pub struct Problema;
@@ -42,7 +42,7 @@ fn get_prime_digit_replacements() -> i32 {
     loop {
         let patterns = get_pattern(num_digits);
 
-        for prime in get_primes_erastostenes(end_number) {
+        for prime in get_primes_eratostenes(end_number) {
             primes.insert(prime, true);
         }
 
