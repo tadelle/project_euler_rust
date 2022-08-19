@@ -39,7 +39,7 @@ fn get_amicable_numbers() -> i32 {
         if !map.contains_key(&number) {
             let sum1: i32 = get_proper_divisors(number).into_iter().sum();
 
-            if sum1 >= limit || sum1 == number{
+            if sum1 >= limit || sum1 == number {
                 continue;
             }
 
@@ -48,7 +48,6 @@ fn get_amicable_numbers() -> i32 {
             map.insert(number, sum1);
             map.insert(sum1, sum2);
             if sum2 == number {
-                
                 result += number;
                 result += sum1;
             }

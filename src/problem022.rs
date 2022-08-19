@@ -1,16 +1,16 @@
 //! Names scores
-//! 
-//! Using names.txt, a 46K text file containing over 
+//!
+//! Using names.txt, a 46K text file containing over
 //! five-thousand first names, begin by sorting it into
-//! alphabetical order. Then working out the alphabetical 
+//! alphabetical order. Then working out the alphabetical
 //! value for each name, multiply this value by its
 //! alphabetical position in the list to obtain a name score.
-//! 
-//! For example, when the list is sorted into alphabetical 
+//!
+//! For example, when the list is sorted into alphabetical
 //! order, COLIN, which is worth 3 + 15 + 12 + 9 + 14 = 53,
-//! is the 938th name in the list. So, 
+//! is the 938th name in the list. So,
 //! COLIN would obtain a score of 938 × 53 = 49714.
-//! 
+//!
 //! What is the total of all the name scores in the file?
 use std::fs;
 
@@ -33,8 +33,8 @@ impl Problem for Problema {
 }
 
 fn get_names_scores() -> i32 {
-    let mut names = 
-        fs::read_to_string("src/data/p022_names.txt").unwrap_or(String::from(""))
+    let mut names = fs::read_to_string("src/data/p022_names.txt")
+        .unwrap_or(String::from(""))
         .split(",")
         .map(|n| n.replace("\"", "").to_lowercase())
         .collect::<Vec<String>>();

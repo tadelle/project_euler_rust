@@ -1,10 +1,10 @@
 //! 1000-digit Fibonacci number
-//! 
+//!
 //! The Fibonacci sequence is defined by the recurrence relation:
-//! 
+//!
 //! Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.
 //! Hence the first 12 terms will be:
-//! 
+//!
 //! F1 = 1
 //! F2 = 1
 //! F3 = 2
@@ -18,7 +18,7 @@
 //! F11 = 89
 //! F12 = 144
 //! The 12th term, F12, is the first term to contain three digits.
-//! 
+//!
 //! What is the index of the first term in the
 //! Fibonacci sequence to contain 1000 digits?
 use super::problems::Problem;
@@ -40,13 +40,11 @@ impl Problem for Problema {
 }
 
 fn get_1000_digit_fibonacci_number() -> i32 {
-    
     let limit = 1000;
     let mut index = 2;
     let mut vec1 = vec![1_u8];
     let mut vec2 = vec![1_u8];
     loop {
-
         let vec_next = add_vec(&vec1, &vec2);
         index += 1;
 
@@ -74,7 +72,6 @@ fn add_vec(vec1: &Vec<u8>, vec2: &Vec<u8>) -> Vec<u8> {
         index += 1;
     }
     while remainder > 0 || vec2.len() > index {
-
         if index < vec2.len() {
             result = vec2[index] + remainder;
             vec_res.push(result % 10);
