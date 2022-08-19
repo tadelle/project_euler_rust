@@ -11,12 +11,25 @@ mod problem010;
 mod problem011;
 mod problem012;
 mod problem013;
+mod problem014;
+mod problem015;
+mod problem016;
+mod problem017;
+mod problem018;
+mod problem019;
+mod problem020;
+mod problem021;
+mod problem022;
+mod problem023;
+mod problem024;
+mod problem025;
 mod problem028;
 mod problem034;
 mod problem039;
 mod problem048;
+mod problem051;
+mod problem067;
 mod problems;
-mod problem014;
 
 use colored::*;
 use num_cpus;
@@ -24,6 +37,7 @@ use problems::Problem;
 use std::env::args;
 use std::io;
 use std::time::{Duration, Instant};
+use sysinfo::SystemExt;
 
 fn get_result(number: i32) -> i64 {
     match number {
@@ -41,10 +55,23 @@ fn get_result(number: i32) -> i64 {
         12 => problem012::Problema::new().get_result(),
         13 => problem013::Problema::new().get_result(),
         14 => problem014::Problema::new().get_result(),
+        15 => problem015::Problema::new().get_result(),
+        16 => problem016::Problema::new().get_result(),
+        17 => problem017::Problema::new().get_result(),
+        18 => problem018::Problema::new().get_result(),
+        19 => problem019::Problema::new().get_result(),
+        20 => problem020::Problema::new().get_result(),
+        21 => problem021::Problema::new().get_result(),
+        22 => problem022::Problema::new().get_result(),
+        23 => problem023::Problema::new().get_result(),
+        24 => problem024::Problema::new().get_result(),
+        25 => problem025::Problema::new().get_result(),
         28 => problem028::Problema::new().get_result(),
         34 => problem034::Problema::new().get_result(),
         39 => problem039::Problema::new().get_result(),
         48 => problem048::Problema::new().get_result(),
+        51 => problem051::Problema::new().get_result(),
+        67 => problem067::Problema::new().get_result(),
         _ => 0,
     }
 }
@@ -65,17 +92,35 @@ fn get_title(number: i32) -> String {
         12 => problem012::Problema::new().get_title(),
         13 => problem013::Problema::new().get_title(),
         14 => problem014::Problema::new().get_title(),
+        15 => problem015::Problema::new().get_title(),
+        16 => problem016::Problema::new().get_title(),
+        17 => problem017::Problema::new().get_title(),
+        18 => problem018::Problema::new().get_title(),
+        19 => problem019::Problema::new().get_title(),
+        20 => problem020::Problema::new().get_title(),
+        21 => problem021::Problema::new().get_title(),
+        22 => problem022::Problema::new().get_title(),
+        23 => problem023::Problema::new().get_title(),
+        24 => problem024::Problema::new().get_title(),
+        25 => problem025::Problema::new().get_title(),
         28 => problem028::Problema::new().get_title(),
         34 => problem034::Problema::new().get_title(),
         39 => problem039::Problema::new().get_title(),
         48 => problem048::Problema::new().get_title(),
+        51 => problem051::Problema::new().get_title(),
+        67 => problem067::Problema::new().get_title(),
         _ => String::from("Not implemented yet!"),
     }
 }
 
 fn print_color(num_problem: i32, title: String, answer: i64, time: Duration, info: bool) {
-    println!("{}", format!("Problem {num_problem} - {title}").green());
-    println!("{}\n", format!("Answer: {}", answer).green());
+    if answer == 0 {
+        println!("{}", format!("Problem {num_problem} - {title}").red());
+        println!("{}\n", "Answer: ".red());
+    } else {
+        println!("{}", format!("Problem {num_problem} - {title}").green());
+        println!("{}\n", format!("Answer: {}", answer).green());
+    }
     if info {
         println!(
             "{}",
@@ -101,6 +146,9 @@ fn main() {
 
     println!("Digite o número do problema ou x para sair: ");
     loop {
+        let mut system = sysinfo::System::new();
+        system.refresh_all();
+
         let mut problem_number = String::new();
         io::stdin()
             .read_line(&mut problem_number)
@@ -124,6 +172,7 @@ fn main() {
 
         print!("\x1B[2J\x1B[1;1H");
         print_color(number, title, resultado, tempo, info);
+
         println!("Digite o número do problema ou x para sair: ");
     }
 }
