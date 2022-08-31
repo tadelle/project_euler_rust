@@ -23,6 +23,7 @@ mod problem022;
 mod problem023;
 mod problem024;
 mod problem025;
+mod problem026;
 mod problem028;
 mod problem034;
 mod problem039;
@@ -66,6 +67,7 @@ fn get_result(number: i32) -> i64 {
         23 => problem023::Problema::new().get_result(),
         24 => problem024::Problema::new().get_result(),
         25 => problem025::Problema::new().get_result(),
+        26 => problem026::Problema::new().get_result(),
         28 => problem028::Problema::new().get_result(),
         34 => problem034::Problema::new().get_result(),
         39 => problem039::Problema::new().get_result(),
@@ -103,6 +105,7 @@ fn get_title(number: i32) -> String {
         23 => problem023::Problema::new().get_title(),
         24 => problem024::Problema::new().get_title(),
         25 => problem025::Problema::new().get_title(),
+        26 => problem026::Problema::new().get_title(),
         28 => problem028::Problema::new().get_title(),
         34 => problem034::Problema::new().get_title(),
         39 => problem039::Problema::new().get_title(),
