@@ -47,10 +47,7 @@ fn get_reciprocal_cycles() -> i32 {
         let mut remainder = 10 % divisor;
         let mut times = 0;
         let mut num_cycles = 0;
-        loop {
-            if remainder == 0 {
-                break;
-            }
+        while remainder > 0 {
             times += 1;
 
             if map.contains_key(&remainder) {

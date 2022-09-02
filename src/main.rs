@@ -31,6 +31,7 @@ mod problem048;
 mod problem051;
 mod problem067;
 mod problems;
+mod problem027;
 
 use colored::*;
 use num_cpus;
@@ -68,6 +69,7 @@ fn get_result(number: i32) -> i64 {
         24 => problem024::Problema::new().get_result(),
         25 => problem025::Problema::new().get_result(),
         26 => problem026::Problema::new().get_result(),
+        27 => problem027::Problema::new().get_result(),
         28 => problem028::Problema::new().get_result(),
         34 => problem034::Problema::new().get_result(),
         39 => problem039::Problema::new().get_result(),
@@ -106,6 +108,7 @@ fn get_title(number: i32) -> String {
         24 => problem024::Problema::new().get_title(),
         25 => problem025::Problema::new().get_title(),
         26 => problem026::Problema::new().get_title(),
+        27 => problem027::Problema::new().get_title(),
         28 => problem028::Problema::new().get_title(),
         34 => problem034::Problema::new().get_title(),
         39 => problem039::Problema::new().get_title(),
