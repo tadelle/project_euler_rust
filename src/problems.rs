@@ -74,6 +74,47 @@ pub fn get_primes_eratostenes(number: i32) -> Vec<i32> {
     primes.clone()
 }
 
+#[allow(dead_code)]
+pub fn power_vec(number: i32, power: i32) -> String {
+    let mut vec_num: Vec<u8> = number.to_string().chars().into_iter().map(|b| b as u8 - '0' as u8).collect();
+    vec_num.reverse();
+
+    for _ in 1..power {
+        let vec = vec_num.clone();
+        for _ in 1..number {
+            vec_num = add_vec(&vec, &vec_num)
+        }
+    }
+    vec_num.into_iter().map(|n| n.to_string()).reduce(|ac, d| format!("{}{}", d, ac)).unwrap_or("".to_string())
+}
+
+pub fn add_vec(vec1: &Vec<u8>, vec2: &Vec<u8>) -> Vec<u8> {
+    let mut result: u8;
+    let mut remainder: u8 = 0;
+    let mut vec_res: Vec<u8> = Vec::new();
+
+    let mut index = 0;
+    for digit in vec1 {
+        result = digit + vec2[index] + remainder;
+        vec_res.push(result % 10);
+        remainder = result / 10;
+        index += 1;
+    }
+    while remainder > 0 || vec2.len() > index {
+        if index < vec2.len() {
+            result = vec2[index] + remainder;
+            vec_res.push(result % 10);
+            remainder = result / 10;
+        } else {
+            vec_res.push(remainder);
+            remainder = 0;
+        }
+        index += 1;
+    }
+
+    vec_res
+}
+
 #[cfg(test)]
 mod test_problems {
     use super::*;
@@ -95,5 +136,12 @@ mod test_problems {
             .map(|num| num as i64)
             .sum::<i64>();
         assert_eq!(sum, 142_913_828_922)
+    }
+
+    #[test]
+    fn test_power_vec() {
+        assert_eq!(power_vec(9, 5), "59049".to_string());
+        assert_eq!(power_vec(789, 2), "622521".to_string());
+        assert_eq!(power_vec(555, 5), "52658067346875".to_string());
     }
 }

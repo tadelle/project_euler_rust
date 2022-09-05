@@ -21,6 +21,8 @@
 //!
 //! What is the index of the first term in the
 //! Fibonacci sequence to contain 1000 digits?
+use crate::problems::add_vec;
+
 use super::problems::Problem;
 
 pub struct Problema;
@@ -59,32 +61,32 @@ fn get_1000_digit_fibonacci_number() -> i32 {
     index
 }
 
-fn add_vec(vec1: &Vec<u8>, vec2: &Vec<u8>) -> Vec<u8> {
-    let mut result: u8;
-    let mut remainder: u8 = 0;
-    let mut vec_res: Vec<u8> = Vec::new();
+// fn add_vec(vec1: &Vec<u8>, vec2: &Vec<u8>) -> Vec<u8> {
+//     let mut result: u8;
+//     let mut remainder: u8 = 0;
+//     let mut vec_res: Vec<u8> = Vec::new();
 
-    let mut index = 0;
-    for digit in vec1 {
-        result = digit + vec2[index] + remainder;
-        vec_res.push(result % 10);
-        remainder = result / 10;
-        index += 1;
-    }
-    while remainder > 0 || vec2.len() > index {
-        if index < vec2.len() {
-            result = vec2[index] + remainder;
-            vec_res.push(result % 10);
-            remainder = result / 10;
-        } else {
-            vec_res.push(remainder);
-            remainder = 0;
-        }
-        index += 1;
-    }
+//     let mut index = 0;
+//     for digit in vec1 {
+//         result = digit + vec2[index] + remainder;
+//         vec_res.push(result % 10);
+//         remainder = result / 10;
+//         index += 1;
+//     }
+//     while remainder > 0 || vec2.len() > index {
+//         if index < vec2.len() {
+//             result = vec2[index] + remainder;
+//             vec_res.push(result % 10);
+//             remainder = result / 10;
+//         } else {
+//             vec_res.push(remainder);
+//             remainder = 0;
+//         }
+//         index += 1;
+//     }
 
-    vec_res
-}
+//     vec_res
+// }
 
 #[cfg(test)]
 mod test025 {
