@@ -6,9 +6,9 @@
 //! to the sum of the factorial of their digits.
 //!
 //! Note: As 1! = 1 and 2! = 2 are not sums they are not included.
+use crate::problems::get_sum_function_parallel;
+
 use super::problems::Problem;
-use num_cpus;
-use std::thread::{self, JoinHandle};
 
 pub struct Problema;
 
@@ -26,23 +26,20 @@ impl Problem for Problema {
     }
 }
 
+fn get_digit_factorials() -> i32 {
+
+    let limit = 2_540_160; // (9! * 7)
+    let init = 3;
+
+    get_sum_function_parallel(get_digit_factorials_partial, init, limit)
+}
+
 fn get_factorial(number: i32) -> i32 {
     if number == 1 || number == 0 {
         1
     } else {
         number * get_factorial(number - 1)
     }
-}
-
-fn get_sum_factorial_digit(number: usize, vector: &Vec<i32>) -> usize {
-    let mut number1 = number;
-    let mut sum: usize = 0;
-    while number1 > 0 {
-        let digit = number1 % 10;
-        sum += vector[digit] as usize;
-        number1 /= 10;
-    }
-    sum
 }
 
 fn get_digit_factorials_partial(ini: usize, end: usize) -> i32 {
@@ -74,34 +71,15 @@ fn get_digit_factorials_partial(ini: usize, end: usize) -> i32 {
     result as i32
 }
 
-fn get_digit_factorials() -> i32 {
-    let limit = 2_540_160; // (9! * 7)
-    let cores = num_cpus::get();
-    let chunck = limit / cores;
-    let mut vec_handle: Vec<JoinHandle<i32>> = Vec::new();
-
-    let mut counter = 0;
-    while counter < cores {
-        let ini = if counter == 0 { 3 } else { chunck * counter };
-        let end = if counter == cores - 1 {
-            limit
-        } else {
-            chunck * (counter + 1)
-        };
-
-        vec_handle.push(thread::spawn(move || {
-            get_digit_factorials_partial(ini, end)
-        }));
-
-        counter += 1;
+fn get_sum_factorial_digit(number: usize, vector: &Vec<i32>) -> usize {
+    let mut number1 = number;
+    let mut sum: usize = 0;
+    while number1 > 0 {
+        let digit = number1 % 10;
+        sum += vector[digit] as usize;
+        number1 /= 10;
     }
-
-    let mut result = 0;
-    for handle in vec_handle {
-        result += handle.join().unwrap_or(0);
-    }
-
-    result
+    sum
 }
 
 #[cfg(test)]

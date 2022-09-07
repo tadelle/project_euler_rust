@@ -1,3 +1,5 @@
+use std::thread::{JoinHandle, self};
+
 pub trait Problem {
     fn new() -> Self;
     fn get_title(self: &Self) -> String;
@@ -72,6 +74,36 @@ pub fn get_primes_eratostenes(number: i32) -> Vec<i32> {
     }
 
     primes.clone()
+}
+
+pub fn get_sum_function_parallel(fun: fn(usize, usize) -> i32, initial_value: usize, final_value: usize) -> i32 {
+    let limit = final_value;
+    let cores = num_cpus::get();
+    let chunck = limit / cores;
+    let mut vec_handle: Vec<JoinHandle<i32>> = Vec::new();
+
+    let mut counter = 0;
+    while counter < cores {
+        let ini = if counter == 0 { initial_value } else { chunck * counter };
+        let end = if counter == cores - 1 {
+            limit
+        } else {
+            chunck * (counter + 1)
+        };
+
+        vec_handle.push(thread::spawn(move || {
+            fun(ini, end)
+        }));
+
+        counter += 1;
+    }
+
+    let mut result = 0;
+    for handle in vec_handle {
+        result += handle.join().unwrap_or(0);
+    }
+
+    result
 }
 
 #[allow(dead_code)]
