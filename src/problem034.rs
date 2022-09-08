@@ -27,7 +27,6 @@ impl Problem for Problema {
 }
 
 fn get_digit_factorials() -> i32 {
-
     let limit = 2_540_160; // (9! * 7)
     let init = 3;
 

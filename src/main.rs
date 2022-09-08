@@ -28,14 +28,14 @@ mod problem027;
 mod problem028;
 mod problem029;
 mod problem030;
+mod problem031;
+mod problem032;
 mod problem034;
 mod problem039;
 mod problem048;
 mod problem051;
 mod problem067;
 mod problems;
-mod problem031;
-mod problem032;
 
 use colored::*;
 use num_cpus;
