@@ -25,9 +25,8 @@ impl Problem for Problema {
 
 fn get_multiples_of_3_and_5() -> i32 {
     (1..1000)
-        .into_iter()
         .filter(|number| number % 3 == 0 || number % 5 == 0)
-        .sum::<i32>()
+        .sum()
 }
 
 #[cfg(test)]

@@ -88,7 +88,6 @@ fn get_sum_digit_fifth_powers(ini: i32, end: i32) -> i32 {
 #[allow(dead_code)]
 fn get_digit_fifth_powers_iter() -> i32 {
     (2..354295)
-        .into_iter()
         .map(|n| {
             (
                 n,

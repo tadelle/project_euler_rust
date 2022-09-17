@@ -118,7 +118,6 @@ pub fn power_vec(number: i32, power: i32) -> String {
     let mut vec_num: Vec<u8> = number
         .to_string()
         .chars()
-        .into_iter()
         .map(|b| b as u8 - '0' as u8)
         .collect();
     vec_num.reverse();

@@ -34,7 +34,6 @@ fn get_double_base_palindromes() -> i32 {
 
 fn get_sum_double_base_palindromes(ini: usize, end: usize) -> i32 {
     (ini..end)
-        .into_iter()
         .map(|number| {
             if is_double_base_palindrome(number) {
                 number as i32

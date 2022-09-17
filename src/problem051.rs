@@ -87,7 +87,6 @@ fn get_pattern(num_digits: usize) -> Vec<Vec<i32>> {
         vec_bin.push(
             str_bin
                 .chars()
-                .into_iter()
                 .map(|digit| (digit as i32) - ('0' as i32))
                 .collect::<Vec<_>>(),
         );
@@ -100,7 +99,6 @@ fn get_array_number(number: i32) -> Vec<i32> {
     number
         .to_string()
         .chars()
-        .into_iter()
         .map(|digit| (digit as i32) - ('0' as i32))
         .collect::<Vec<_>>()
 }

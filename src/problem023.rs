@@ -68,7 +68,6 @@ fn get_abundant_numbers() -> HashMap<i32, bool> {
     let limit = 28123 + 1;
 
     let map = (12..limit)
-        .into_iter()
         .filter(|n| get_sum_divisors(*n) > *n)
         .map(|n| (n, true))
         .collect::<HashMap<i32, bool>>();

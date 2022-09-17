@@ -25,7 +25,6 @@ fn get_self_powers() -> i64 {
     let limit: i64 = 10_000_000_000;
     let mut sum: i64 = 0;
     let numbers = (1..1000)
-        .into_iter()
         .filter(|num| num % 10 != 0)
         .collect::<Vec<i64>>();
 
