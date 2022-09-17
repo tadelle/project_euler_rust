@@ -1,3 +1,5 @@
+use std::thread::{self, JoinHandle};
+
 pub trait Problem {
     fn new() -> Self;
     fn get_title(self: &Self) -> String;
@@ -74,9 +76,51 @@ pub fn get_primes_eratostenes(number: i32) -> Vec<i32> {
     primes.clone()
 }
 
+
+pub fn get_sum_function_parallel(
+    fun: fn(usize, usize) -> i32,
+    initial_value: usize,
+    final_value: usize
+) -> i32 {
+    let limit = final_value;
+    let cores = num_cpus::get();
+    let chunck = limit / cores;
+    let mut vec_handle: Vec<JoinHandle<i32>> = Vec::new();
+
+    let mut counter = 0;
+    while counter < cores {
+        let ini = if counter == 0 {
+            initial_value
+        } else {
+            chunck * counter
+        };
+        let end = if counter == cores - 1 {
+            limit
+        } else {
+            chunck * (counter + 1)
+        };
+
+        vec_handle.push(thread::spawn(move || fun(ini, end)));
+
+        counter += 1;
+    }
+
+    let mut result = 0;
+    for handle in vec_handle {
+        result += handle.join().unwrap_or(0);
+    }
+
+    result
+}
+
 #[allow(dead_code)]
 pub fn power_vec(number: i32, power: i32) -> String {
-    let mut vec_num: Vec<u8> = number.to_string().chars().into_iter().map(|b| b as u8 - '0' as u8).collect();
+    let mut vec_num: Vec<u8> = number
+        .to_string()
+        .chars()
+        .into_iter()
+        .map(|b| b as u8 - '0' as u8)
+        .collect();
     vec_num.reverse();
 
     for _ in 1..power {
@@ -85,7 +129,11 @@ pub fn power_vec(number: i32, power: i32) -> String {
             vec_num = add_vec(&vec, &vec_num)
         }
     }
-    vec_num.into_iter().map(|n| n.to_string()).reduce(|ac, d| format!("{}{}", d, ac)).unwrap_or("".to_string())
+    vec_num
+        .into_iter()
+        .map(|n| n.to_string())
+        .reduce(|ac, d| format!("{}{}", d, ac))
+        .unwrap_or("".to_string())
 }
 
 pub fn add_vec(vec1: &Vec<u8>, vec2: &Vec<u8>) -> Vec<u8> {
