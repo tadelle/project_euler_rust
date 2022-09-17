@@ -1,18 +1,18 @@
 //! Digit cancelling fractions
-//! 
-//! The fraction 49/98 is a curious fraction, as an 
-//! inexperienced mathematician in attempting to 
-//! simplify it may incorrectly believe that 49/98 = 4/8, 
+//!
+//! The fraction 49/98 is a curious fraction, as an
+//! inexperienced mathematician in attempting to
+//! simplify it may incorrectly believe that 49/98 = 4/8,
 //! which is correct, is obtained by cancelling the 9s.
-//! 
-//! We shall consider fractions like, 30/50 = 3/5, 
+//!
+//! We shall consider fractions like, 30/50 = 3/5,
 //! to be trivial examples.
-//! 
-//! There are exactly four non-trivial examples of 
-//! this type of fraction, less than one in value, 
+//!
+//! There are exactly four non-trivial examples of
+//! this type of fraction, less than one in value,
 //! and containing two digits in the numerator and denominator.
-//! 
-//! If the product of these four fractions is given in its 
+//!
+//! If the product of these four fractions is given in its
 //! lowest common terms, find the value of the denominator.
 use super::problems::Problem;
 
@@ -47,12 +47,13 @@ fn get_digit_cancelling_fractions() -> i64 {
             let d2 = denominator % 10;
 
             let res = numerator as f64 / denominator as f64;
-            if  (n1 == d1 && res == n2 as f64 / d2 as f64) || 
-                (n1 == d2 && res == n2 as f64 / d1 as f64) ||
-                (n2 == d1 && res == n1 as f64 / d2 as f64) || 
-                (n2 == d2 && res == n1 as f64 / d1 as f64) {
-                    num_acc *= numerator;
-                    den_acc *= denominator;
+            if (n1 == d1 && res == n2 as f64 / d2 as f64)
+                || (n1 == d2 && res == n2 as f64 / d1 as f64)
+                || (n2 == d1 && res == n1 as f64 / d2 as f64)
+                || (n2 == d2 && res == n1 as f64 / d1 as f64)
+            {
+                num_acc *= numerator;
+                den_acc *= denominator;
             }
         }
     }
@@ -91,4 +92,3 @@ mod test033 {
         assert_eq!(Problema::new().get_title(), "Digit cancelling fractions")
     }
 }
-

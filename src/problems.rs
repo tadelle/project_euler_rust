@@ -76,10 +76,11 @@ pub fn get_primes_eratostenes(number: i32) -> Vec<i32> {
     primes.clone()
 }
 
+
 pub fn get_sum_function_parallel(
     fun: fn(usize, usize) -> i32,
     initial_value: usize,
-    final_value: usize,
+    final_value: usize
 ) -> i32 {
     let limit = final_value;
     let cores = num_cpus::get();
