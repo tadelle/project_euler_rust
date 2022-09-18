@@ -10,7 +10,7 @@
 //! How many circular primes are there below one million?
 use std::collections::HashMap;
 
-use super::{Problem, get_primes_eratostenes};
+use super::{get_primes_eratostenes, Problem};
 
 crate::base_problem!(55, "Circular primes");
 

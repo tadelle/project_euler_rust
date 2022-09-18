@@ -21,7 +21,7 @@
 //!
 //! What is the index of the first term in the
 //! Fibonacci sequence to contain 1000 digits?
-use super::{Problem, add_vec};
+use super::{add_vec, Problem};
 
 crate::base_problem!(4782, "1000-digit Fibonacci number");
 

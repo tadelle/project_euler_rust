@@ -18,7 +18,7 @@
 //! We can see that 28 is the first triangle number to have over five divisors.
 //!
 //! What is the value of the first triangle number to have over five hundred divisors?
-use super::{Problem, get_number_of_divisors};
+use super::{get_number_of_divisors, Problem};
 
 crate::base_problem!(76576500, "Highly divisible triangular number");
 

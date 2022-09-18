@@ -22,7 +22,7 @@
 //! Find the product of the coefficients, a and b, for the quadratic
 //! expression that produces the maximum number of primes for
 //! consecutive values of n, starting with n = 0.
-use super::{Problem, is_prime};
+use super::{is_prime, Problem};
 
 crate::base_problem!(-59231, "Quadratic primes");
 

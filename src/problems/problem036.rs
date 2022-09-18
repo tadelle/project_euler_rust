@@ -8,7 +8,7 @@
 //!
 //! (Please note that the palindromic number,
 //! in either base, may not include leading zeros.)
-use super::{Problem, get_sum_function_parallel};
+use super::{get_sum_function_parallel, Problem};
 
 crate::base_problem!(872187, "Double-base palindromes");
 

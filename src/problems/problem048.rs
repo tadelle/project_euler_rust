@@ -10,9 +10,7 @@ crate::base_problem!(9110846700, "Self powers");
 fn get_result_problem() -> i64 {
     let limit: i64 = 10_000_000_000;
     let mut sum: i64 = 0;
-    let numbers = (1..1000)
-        .filter(|num| num % 10 != 0)
-        .collect::<Vec<i64>>();
+    let numbers = (1..1000).filter(|num| num % 10 != 0).collect::<Vec<i64>>();
 
     for number in numbers {
         let mut mult = 1;

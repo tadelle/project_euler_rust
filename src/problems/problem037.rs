@@ -1,16 +1,16 @@
 //! Truncatable primes
-//! 
-//! The number 3797 has an interesting property. 
-//! Being prime itself, it is possible to continuously 
-//! remove digits from left to right, and remain prime 
-//! at each stage: 3797, 797, 97, and 7. 
+//!
+//! The number 3797 has an interesting property.
+//! Being prime itself, it is possible to continuously
+//! remove digits from left to right, and remain prime
+//! at each stage: 3797, 797, 97, and 7.
 //! Similarly we can work from right to left: 3797, 379, 37, and 3.
-//! 
-//! Find the sum of the only eleven primes that are 
+//!
+//! Find the sum of the only eleven primes that are
 //! both truncatable from left to right and right to left.
-//! 
+//!
 //! NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
-use super::{Problem, get_primes_eratostenes, is_prime};
+use super::{get_primes_eratostenes, is_prime, Problem};
 
 crate::base_problem!(748317, "Truncatable primes");
 
@@ -47,8 +47,9 @@ fn get_result_problem() -> i64 {
 }
 
 fn is_truncable(prime: i32) -> bool {
-
-    if prime <= 7 { return false; }
+    if prime <= 7 {
+        return false;
+    }
 
     let mut number = prime / 10;
     while number > 0 {

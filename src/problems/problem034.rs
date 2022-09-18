@@ -6,7 +6,7 @@
 //! to the sum of the factorial of their digits.
 //!
 //! Note: As 1! = 1 and 2! = 2 are not sums they are not included.
-use super::{Problem, get_factorial, get_sum_function_parallel};
+use super::{get_factorial, get_sum_function_parallel, Problem};
 
 crate::base_problem!(40730, "Digit factorials");
 

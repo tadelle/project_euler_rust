@@ -35,11 +35,11 @@ mod problem033;
 mod problem034;
 mod problem035;
 mod problem036;
+mod problem037;
 mod problem039;
 mod problem048;
 mod problem051;
 mod problem067;
-mod problem037;
 
 pub trait Problem {
     fn new() -> Self;
@@ -256,7 +256,7 @@ pub fn get_number_of_divisors(number: i32) -> i32 {
 pub fn get_sum_function_parallel(
     fun: fn(usize, usize) -> i32,
     initial_value: usize,
-    final_value: usize
+    final_value: usize,
 ) -> i32 {
     let limit = final_value;
     let cores = num_cpus::get();

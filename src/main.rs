@@ -2,7 +2,7 @@ mod problems;
 
 use colored::*;
 use num_cpus;
-use problems::{get_title, get_result};
+use problems::{get_result, get_title};
 use std::env::args;
 use std::io;
 use std::time::{Duration, Instant};
