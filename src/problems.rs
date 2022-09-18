@@ -39,11 +39,38 @@ mod problem039;
 mod problem048;
 mod problem051;
 mod problem067;
+mod problem037;
 
 pub trait Problem {
     fn new() -> Self;
     fn get_title(self: &Self) -> String;
     fn get_result(self: &Self) -> i64;
+}
+
+#[macro_export]
+macro_rules! base_problem {
+    ($result: expr, $title: expr) => {
+        pub struct Problema;
+
+        impl Problem for Problema {
+            fn new() -> Problema {
+                Problema {}
+            }
+
+            fn get_title(&self) -> String {
+                String::from($title)
+            }
+
+            fn get_result(&self) -> i64 {
+                get_result_problem()
+            }
+        }
+
+        #[test]
+        fn test_get_result() {
+            assert_eq!(Problema::new().get_result(), $result);
+        }
+    };
 }
 
 pub fn get_result(number: i32) -> i64 {
@@ -84,6 +111,7 @@ pub fn get_result(number: i32) -> i64 {
         34 => problem034::Problema::new().get_result(),
         35 => problem035::Problema::new().get_result(),
         36 => problem036::Problema::new().get_result(),
+        37 => problem037::Problema::new().get_result(),
         39 => problem039::Problema::new().get_result(),
         48 => problem048::Problema::new().get_result(),
         51 => problem051::Problema::new().get_result(),
@@ -130,6 +158,7 @@ pub fn get_title(number: i32) -> String {
         34 => problem034::Problema::new().get_title(),
         35 => problem035::Problema::new().get_title(),
         36 => problem036::Problema::new().get_title(),
+        37 => problem037::Problema::new().get_title(),
         39 => problem039::Problema::new().get_title(),
         48 => problem048::Problema::new().get_title(),
         51 => problem051::Problema::new().get_title(),
@@ -315,32 +344,6 @@ pub fn add_vec(vec1: &Vec<u8>, vec2: &Vec<u8>) -> Vec<u8> {
     }
 
     vec_res
-}
-
-#[macro_export]
-macro_rules! base_problem {
-    ($result: expr, $title: expr) => {
-        pub struct Problema;
-
-        impl Problem for Problema {
-            fn new() -> Problema {
-                Problema {}
-            }
-
-            fn get_title(&self) -> String {
-                String::from($title)
-            }
-
-            fn get_result(&self) -> i64 {
-                get_result_problem()
-            }
-        }
-
-        #[test]
-        fn test_get_result() {
-            assert_eq!(Problema::new().get_result(), $result)
-        }
-    };
 }
 
 #[test]
