@@ -312,6 +312,7 @@ pub fn power_vec(number: i32, power: i32) -> String {
             vec_num = add_vec(&vec, &vec_num)
         }
     }
+
     vec_num
         .into_iter()
         .map(|n| n.to_string())
