@@ -36,7 +36,10 @@ mod problem034;
 mod problem035;
 mod problem036;
 mod problem037;
+mod problem038;
 mod problem039;
+mod problem040;
+mod problem041;
 mod problem048;
 mod problem051;
 mod problem067;
@@ -112,7 +115,10 @@ pub fn get_result(number: i32) -> i64 {
         35 => problem035::Problema::new().get_result(),
         36 => problem036::Problema::new().get_result(),
         37 => problem037::Problema::new().get_result(),
+        38 => problem038::Problema::new().get_result(),
         39 => problem039::Problema::new().get_result(),
+        40 => problem040::Problema::new().get_result(),
+        41 => problem041::Problema::new().get_result(),
         48 => problem048::Problema::new().get_result(),
         51 => problem051::Problema::new().get_result(),
         67 => problem067::Problema::new().get_result(),
@@ -159,7 +165,10 @@ pub fn get_title(number: i32) -> String {
         35 => problem035::Problema::new().get_title(),
         36 => problem036::Problema::new().get_title(),
         37 => problem037::Problema::new().get_title(),
+        38 => problem038::Problema::new().get_title(),
         39 => problem039::Problema::new().get_title(),
+        40 => problem040::Problema::new().get_title(),
+        41 => problem041::Problema::new().get_title(),
         48 => problem048::Problema::new().get_title(),
         51 => problem051::Problema::new().get_title(),
         67 => problem067::Problema::new().get_title(),
@@ -297,8 +306,7 @@ pub fn get_factorial(number: i32) -> i32 {
     }
 }
 
-#[allow(dead_code)]
-pub fn power_vec(number: i32, power: i32) -> String {
+pub fn power_vec(number: i32, power: i32) -> Vec<u8> {
     let mut vec_num: Vec<u8> = number
         .to_string()
         .chars()
@@ -313,11 +321,9 @@ pub fn power_vec(number: i32, power: i32) -> String {
         }
     }
 
+    vec_num.reverse();
+
     vec_num
-        .into_iter()
-        .map(|n| n.to_string())
-        .reduce(|ac, d| format!("{}{}", d, ac))
-        .unwrap_or("".to_string())
 }
 
 pub fn add_vec(vec1: &Vec<u8>, vec2: &Vec<u8>) -> Vec<u8> {
@@ -368,9 +374,12 @@ fn test_get_primes_eratostenes() {
 
 #[test]
 fn test_power_vec() {
-    assert_eq!(power_vec(9, 5), "59049".to_string());
-    assert_eq!(power_vec(789, 2), "622521".to_string());
-    assert_eq!(power_vec(555, 5), "52658067346875".to_string());
+    assert_eq!(power_vec(9, 5), vec!(5, 9, 0, 4, 9));
+    assert_eq!(power_vec(789, 2), vec!(6, 2, 2, 5, 2, 1));
+    assert_eq!(
+        power_vec(555, 5),
+        vec!(5, 2, 6, 5, 8, 0, 6, 7, 3, 4, 6, 8, 7, 5)
+    );
 }
 
 #[test]

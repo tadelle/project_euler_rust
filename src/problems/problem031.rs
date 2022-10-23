@@ -15,33 +15,20 @@ use super::Problem;
 crate::base_problem!(73682, "Coin sums");
 
 fn get_result_problem() -> i64 {
-    let initial_coin = 200u8;
-    let number_of_coins = 8;
-
-    (count_coins(initial_coin) - number_of_coins) as i64
+    count_coins() as i64
 }
 
-fn count_coins(coin: u8) -> i32 {
-    if coin == 1u8 {
-        1
-    } else {
-        let vec_coin = match coin {
-            200 => vec![100, 100],
-            100 => vec![50, 50],
-            50 => vec![20, 20, 10],
-            20 => vec![10, 10],
-            10 => vec![5, 5],
-            5 => vec![2, 2, 1],
-            2 => vec![1, 1],
-            _ => Vec::new(),
-        };
+fn count_coins() -> i32 {
+    let coins: [i32; 8] = [1, 2, 5, 10, 20, 50, 100, 200];
+    let mut combo = [0; 201];
 
-        let mut times = 1;
-        let len_vec = vec_coin.len() as i32;
-        for c in vec_coin {
-            times += count_coins(c);
+    combo[0] = 1;
+
+    for coin in coins {
+        for i in coin..201 {
+            combo[i as usize] += combo[(i - coin) as usize];
         }
-
-        times * len_vec
     }
+
+    *combo.last().unwrap_or(&0)
 }
