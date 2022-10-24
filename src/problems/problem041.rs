@@ -28,7 +28,7 @@ fn get_pandigital_numbers() -> Vec<i32> {
     vec.push(12);
     vec.push(21);
 
-    for number in 3..9_i32 {
+    for number in 3..=9_i32 {
         let ini = 10_i32.pow((number - 2) as u32);
         let end = 10_i32.pow((number - 1) as u32);
 
