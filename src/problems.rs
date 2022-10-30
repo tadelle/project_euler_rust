@@ -42,6 +42,7 @@ mod problem040;
 mod problem041;
 mod problem042;
 mod problem043;
+mod problem044;
 mod problem048;
 mod problem051;
 mod problem067;
@@ -123,6 +124,7 @@ pub fn get_result(number: i32) -> i64 {
         41 => problem041::Problema::new().get_result(),
         42 => problem042::Problema::new().get_result(),
         43 => problem043::Problema::new().get_result(),
+        44 => problem044::Problema::new().get_result(),
         48 => problem048::Problema::new().get_result(),
         51 => problem051::Problema::new().get_result(),
         67 => problem067::Problema::new().get_result(),
@@ -175,6 +177,7 @@ pub fn get_title(number: i32) -> String {
         41 => problem041::Problema::new().get_title(),
         42 => problem042::Problema::new().get_title(),
         43 => problem043::Problema::new().get_title(),
+        44 => problem044::Problema::new().get_title(),
         48 => problem048::Problema::new().get_title(),
         51 => problem051::Problema::new().get_title(),
         67 => problem067::Problema::new().get_title(),
