@@ -50,6 +50,8 @@ mod problem048;
 mod problem051;
 mod problem067;
 mod problem049;
+mod problem050;
+mod problem052;
 
 pub trait Problem {
     fn new() -> Self;
@@ -134,7 +136,9 @@ pub fn get_result(number: i32) -> i64 {
         47 => problem047::Problema::new().get_result(),
         48 => problem048::Problema::new().get_result(),
         49 => problem049::Problema::new().get_result(),
+        50 => problem050::Problema::new().get_result(),
         51 => problem051::Problema::new().get_result(),
+        52 => problem052::Problema::new().get_result(),
         67 => problem067::Problema::new().get_result(),
         _ => 0,
     }
@@ -191,7 +195,9 @@ pub fn get_title(number: i32) -> String {
         47 => problem047::Problema::new().get_title(),
         48 => problem048::Problema::new().get_title(),
         49 => problem049::Problema::new().get_title(),
+        50 => problem050::Problema::new().get_title(),
         51 => problem051::Problema::new().get_title(),
+        52 => problem052::Problema::new().get_title(),
         67 => problem067::Problema::new().get_title(),
         _ => String::from("Not implemented yet!"),
     }
