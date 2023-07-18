@@ -21,5 +21,5 @@ fn get_result_problem() -> i64 {
         sum += mult % limit;
     }
 
-    (sum % limit) as i64
+    sum % limit
 }

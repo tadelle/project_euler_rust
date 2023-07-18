@@ -1,7 +1,6 @@
 mod problems;
 
 use colored::*;
-use num_cpus;
 use problems::{get_result, get_title};
 use std::env::args;
 use std::io;
@@ -49,7 +48,7 @@ fn main() {
             .read_line(&mut problem_number)
             .expect("Valor Inválido!");
 
-        if problem_number.contains("x") || problem_number.contains("X") {
+        if problem_number.contains('x') || problem_number.contains('X') {
             break;
         }
 

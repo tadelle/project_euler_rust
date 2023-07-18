@@ -28,7 +28,7 @@ fn get_result_problem() -> i64 {
 
     let vec = number
         .chars()
-        .map(|c| (c as u8 - '0' as u8) as i32)
+        .map(|c| (c as u8 - b'0') as i32)
         .collect::<Vec<_>>();
 
     let mut result = 1;

@@ -35,11 +35,9 @@ fn get_solutions(perimeter: i32) -> i32 {
         let mut b: i32 = 1;
         while b < (perimeter - a) {
             let c = perimeter - (a + b);
-            if c > 0 {
-                if a * a == b * b + c * c {
-                    count += 1;
-                    break;
-                }
+            if c > 0 && a * a == b * b + c * c {
+                count += 1;
+                break;
             }
             b += 1;
         }

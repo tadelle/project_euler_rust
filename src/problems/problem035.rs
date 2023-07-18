@@ -29,7 +29,7 @@ fn get_result_problem() -> i64 {
         let vec = get_rotations(*prime);
         let mut is_all_primes = true;
         for n in &vec {
-            if !map_primes.contains_key(&n) {
+            if !map_primes.contains_key(n) {
                 is_all_primes = false;
                 break;
             }
@@ -52,8 +52,8 @@ fn get_rotations(number: i32) -> Vec<i32> {
         vec.push(
             format!(
                 "{}{}",
-                str_number[i..].to_string(),
-                str_number[..i].to_string()
+                &str_number[i..],
+                &str_number[..i]
             )
             .parse::<i32>()
             .unwrap_or(0),

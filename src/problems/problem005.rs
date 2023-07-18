@@ -20,12 +20,14 @@ fn get_result_problem() -> i64 {
     let mut is_used = false;
 
     while divisor < 21 {
-        for index in 0..20 {
-            if divisors[index] % divisor == 0 {
-                divisors[index] /= divisor;
+
+        for d in divisors.iter_mut() {
+            if *d % divisor == 0 {
+                *d /= divisor;
                 is_used = true;
             }
         }
+
         if is_used {
             result *= divisor;
             is_used = false;

@@ -33,7 +33,7 @@ fn get_result_problem() -> i64 {
 
     for number in 1..limit {
         let mut is_ok = false;
-        for (k, _) in &map {
+        for k in map.keys() {
             if k >= &number {
                 continue;
             }
@@ -51,14 +51,12 @@ fn get_result_problem() -> i64 {
 }
 
 fn get_abundant_numbers() -> HashMap<i32, bool> {
-    let limit = 28123 + 1;
+    let limit = 28123;
 
-    let map = (12..limit)
+    (12..=limit)
         .filter(|n| get_sum_divisors(*n) > *n)
         .map(|n| (n, true))
-        .collect::<HashMap<i32, bool>>();
-
-    map.clone()
+        .collect::<HashMap<i32, bool>>()
 }
 
 fn get_sum_divisors(number: i32) -> i32 {
@@ -79,11 +77,9 @@ fn get_proper_divisors(number: i32) -> Vec<i32> {
 
     if sqrt == number {
         divisors.push(limit);
-    } else {
-        if number % limit == 0 {
-            divisors.push(limit);
-            divisors.push(number / limit);
-        }
+    } else if number % limit == 0 {
+        divisors.push(limit);
+        divisors.push(number / limit);
     }
 
     divisors.clone()

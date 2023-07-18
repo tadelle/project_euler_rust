@@ -46,7 +46,7 @@ fn get_digit_factorials_partial(ini: usize, end: usize) -> i32 {
     result as i32
 }
 
-fn get_sum_factorial_digit(number: usize, vector: &Vec<i32>) -> usize {
+fn get_sum_factorial_digit(number: usize, vector: &[i32]) -> usize {
     let mut number1 = number;
     let mut sum: usize = 0;
     while number1 > 0 {

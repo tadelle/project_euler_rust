@@ -53,11 +53,12 @@ mod problem049;
 mod problem050;
 mod problem052;
 mod problem053;
+mod problem054;
 
 pub trait Problem {
     fn new() -> Self;
-    fn get_title(self: &Self) -> String;
-    fn get_result(self: &Self) -> i64;
+    fn get_title(&self) -> String;
+    fn get_result(&self) -> i64;
 }
 
 #[macro_export]
@@ -141,6 +142,7 @@ pub fn get_result(number: i32) -> i64 {
         51 => problem051::Problema::new().get_result(),
         52 => problem052::Problema::new().get_result(),
         53 => problem053::Problema::new().get_result(),
+        54 => problem054::Problema::new().get_result(),
         67 => problem067::Problema::new().get_result(),
         _ => 0,
     }
@@ -201,6 +203,7 @@ pub fn get_title(number: i32) -> String {
         51 => problem051::Problema::new().get_title(),
         52 => problem052::Problema::new().get_title(),
         53 => problem053::Problema::new().get_title(),
+        54 => problem054::Problema::new().get_title(),
         67 => problem067::Problema::new().get_title(),
         _ => String::from("Not implemented yet!"),
     }
@@ -267,8 +270,9 @@ pub fn get_primes_eratostenes(number: i32) -> Vec<i32> {
             break;
         }
     }
-    for index in 5..vec_numbers.len() {
-        if vec_numbers[index] {
+
+    for (index, item) in vec_numbers.iter().enumerate().skip(5) {
+        if *item {
             primes.push(index as i32);
         }
     }
@@ -340,7 +344,7 @@ pub fn power_vec(number: i32, power: i32) -> Vec<u8> {
     let mut vec_num: Vec<u8> = number
         .to_string()
         .chars()
-        .map(|b| b as u8 - '0' as u8)
+        .map(|b| b as u8 - b'0')
         .collect();
     vec_num.reverse();
 

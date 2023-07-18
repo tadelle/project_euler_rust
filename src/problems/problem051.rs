@@ -39,7 +39,7 @@ fn get_result_problem() -> i64 {
                 let list_patterns = patterns
                     .clone()
                     .into_iter()
-                    .filter(|vec| vec.into_iter().sum::<i32>() == num_replaced_digits as i32)
+                    .filter(|vec| vec.iter().sum::<i32>() == num_replaced_digits as i32)
                     .collect::<Vec<Vec<i32>>>();
 
                 for pattern in list_patterns {

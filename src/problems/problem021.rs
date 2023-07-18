@@ -57,11 +57,9 @@ fn get_proper_divisors(number: i32) -> Vec<i32> {
 
     if sqrt == number {
         divisors.push(limit);
-    } else {
-        if number % limit == 0 {
-            divisors.push(limit);
-            divisors.push(number / limit);
-        }
+    } else if number % limit == 0 {
+        divisors.push(limit);
+        divisors.push(number / limit);
     }
 
     divisors.clone()

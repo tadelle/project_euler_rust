@@ -21,8 +21,8 @@ crate::base_problem!(871198282, "Names scores");
 fn get_result_problem() -> i64 {
     let mut names = fs::read_to_string("src/data/p022_names.txt")
         .unwrap_or(String::from(""))
-        .split(",")
-        .map(|n| n.replace("\"", "").to_lowercase())
+        .split(',')
+        .map(|n| n.replace('\"', "").to_lowercase())
         .collect::<Vec<String>>();
 
     names.sort();
@@ -31,7 +31,7 @@ fn get_result_problem() -> i64 {
     for (index, name) in names.into_iter().enumerate() {
         let mut sum = 0;
         for digit in name.chars() {
-            sum += ((digit as u8 - 'a' as u8) + 1) as i32;
+            sum += ((digit as u8 - b'a') + 1) as i32;
         }
         result += sum * (index as i32 + 1);
     }

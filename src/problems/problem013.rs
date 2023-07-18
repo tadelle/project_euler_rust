@@ -18,10 +18,9 @@ fn get_result_problem() -> i64 {
         })
         .sum::<f64>();
 
-    let result = sum.to_string().replace(".", "").replace(",", "")[..10]
+    sum.to_string().replace(['.', ','], "")[..10]
         .parse()
-        .unwrap_or(0);
-    result
+        .unwrap_or(0)
 }
 
 fn get_numbers() -> Vec<&'static str> {

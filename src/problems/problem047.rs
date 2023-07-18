@@ -37,9 +37,7 @@ fn get_result_problem() -> i64 {
                 None => get_prime_factors(n),
             };
 
-            if !map_factor.contains_key(&n) {
-                map_factor.insert(n, vec.clone());
-            }
+            map_factor.entry(n).or_insert_with(|| vec.clone());
 
             if vec.len() != 4 {
                 is_ok = false;

@@ -22,14 +22,14 @@ fn get_result_problem() -> i64 {
             let mut index = 0;
 
             while index < length {
-                result = vec_factorial[index] + vec_partial[index] + result;
+                result += vec_factorial[index] + vec_partial[index];
                 vec_factorial[index] = result % 10;
                 result /= 10;
                 index += 1;
             }
             while result > 0 {
                 if index < vec_factorial.len() {
-                    result = vec_factorial[index] + result;
+                    result += vec_factorial[index];
                     vec_factorial[index] = result % 10;
                     result /= 10;
                 } else {
