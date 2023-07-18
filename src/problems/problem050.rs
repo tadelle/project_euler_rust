@@ -39,20 +39,17 @@ fn get_result_problem() -> i64 {
         let mut sum = prime;
         let mut count = 1;
 
-        for index2 in (index + 1)..length {
-            sum += vec_primes[index2];
+        for p in vec_primes.iter().take(length).skip(index + 1) {
+            sum += p;
             if sum > limit {
                 break;
             }
             count += 1;
-            if primes.contains_key(&sum) {
-                if count > bigger {
-                    bigger = count;
-                    result = sum;
-                }
+            if primes.contains_key(&sum) && count > bigger {
+                bigger = count;
+                result = sum;
             }
         }
     }
     result as i64
 }
-

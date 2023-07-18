@@ -38,9 +38,11 @@ fn get_result_problem() -> i64 {
     let mut counter = 0;
     while counter + 14 < serie.len() {
         let mut mult: i64 = 1;
-        for i in counter..(counter + 13) {
-            mult *= serie[i];
+
+        for s in serie.iter().skip(counter).take(13) {
+            mult *= s;
         }
+
         if mult > result {
             result = mult;
         }
@@ -51,8 +53,7 @@ fn get_result_problem() -> i64 {
 }
 
 fn get_serie() -> Vec<i64> {
-    let serie = String::from(
-        r"73167176531330624919225119674426574742355349194934
+    let serie = r"73167176531330624919225119674426574742355349194934
     96983520312774506326239578318016984801869478851843
     85861560789112949495459501737958331952853208805511
     12540698747158523863050715693290963295227443043557
@@ -72,16 +73,13 @@ fn get_serie() -> Vec<i64> {
     84580156166097919133875499200524063689912560717606
     05886116467109405077541002256983155200055935729725
     71636269561882670428252483600823257530420752963450"
-            .replace(" ", "")
-            .replace("\n", "")
-            .replace("\r", ""),
-    );
+    .replace([' ', '\n', '\r'], "");
 
     let zero = "0".as_bytes()[0];
 
     serie
         .as_bytes()
-        .into_iter()
+        .iter()
         .map(|num| (*num - zero) as i64)
         .collect::<Vec<_>>()
 }

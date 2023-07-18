@@ -12,7 +12,6 @@
 //!
 //! Find the sum of all the numbers that can be
 //! written as the sum of fifth powers of their digits.
-use num_cpus;
 use std::thread::{self, JoinHandle};
 
 use super::Problem;
@@ -79,7 +78,7 @@ fn get_result_problem_iter() -> i64 {
                 n,
                 n.to_string()
                     .chars()
-                    .map(|c| ((c as u8 - '0' as u8) as i32).pow(5))
+                    .map(|c| ((c as u8 - b'0') as i32).pow(5))
                     .reduce(|ac, v| ac + v)
                     .unwrap_or(0),
             )

@@ -26,12 +26,12 @@ fn get_result_problem() -> i64 {
         .into_iter()
         .map(|w| {
             w.chars()
-                .map(|c| (c as u8 - ('A' as u8 - 1_u8)) as i32)
+                .map(|c| (c as u8 - (b'A' - 1_u8)) as i32)
                 .sum::<i32>()
         })
         .collect();
 
-    let max = value_words.clone().into_iter().max().unwrap_or(0) as i32;
+    let max = value_words.clone().into_iter().max().unwrap_or(0);
     let mut map: HashMap<i32, bool> = HashMap::new();
 
     let mut number = 0;
@@ -55,7 +55,7 @@ fn get_triangle_number(index: i32) -> i32 {
 fn get_words() -> Vec<String> {
     fs::read_to_string("src/data/p042_words.txt")
         .unwrap_or(String::from(""))
-        .split(",")
-        .map(|n| n.replace("\"", ""))
+        .split(',')
+        .map(|n| n.replace('\"', ""))
         .collect::<Vec<String>>()
 }

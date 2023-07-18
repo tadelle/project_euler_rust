@@ -35,7 +35,7 @@ fn power_vect(number: i32, power: i32, map: &mut HashMap<String, i32>) {
     let mut vec_num: Vec<u8> = number
         .to_string()
         .chars()
-        .map(|b| b as u8 - '0' as u8)
+        .map(|b| b as u8 - b'0')
         .collect();
     vec_num.reverse();
 

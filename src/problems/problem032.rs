@@ -16,7 +16,7 @@
 //! HINT: Some products can be obtained in more
 //! than one way so be sure to only include
 //! it once in your sum.
-use std::collections::HashMap;
+use std::{collections::HashMap, cmp::Ordering};
 
 use super::Problem;
 
@@ -31,18 +31,18 @@ fn get_result_problem() -> i64 {
 
             let str = format!("{f1}{f2}{product}");
 
-            if str.len() < 9 {
-                continue;
-            } else if str.len() > 9 {
-                break;
-            }
-
             let mut is_pandigital = true;
-            for c in '1'..='9' {
-                if !str.contains(c) {
-                    is_pandigital = false;
-                    break;
-                }
+            match str.len().cmp(&9) {
+                Ordering::Less => continue,
+                Ordering::Greater => break,
+                Ordering::Equal => {
+                    for c in '1'..='9' {
+                        if !str.contains(c) {
+                            is_pandigital = false;
+                            break;
+                        }
+                    }
+                },
             }
 
             if is_pandigital {
