@@ -20,7 +20,6 @@ fn get_result_problem() -> i64 {
     let mut is_used = false;
 
     while divisor < 21 {
-
         for d in divisors.iter_mut() {
             if *d % divisor == 0 {
                 *d /= divisor;

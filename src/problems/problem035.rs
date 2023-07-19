@@ -50,13 +50,9 @@ fn get_rotations(number: i32) -> Vec<i32> {
 
     for i in 1..str_number.len() {
         vec.push(
-            format!(
-                "{}{}",
-                &str_number[i..],
-                &str_number[..i]
-            )
-            .parse::<i32>()
-            .unwrap_or(0),
+            format!("{}{}", &str_number[i..], &str_number[..i])
+                .parse::<i32>()
+                .unwrap_or(0),
         );
     }
 
