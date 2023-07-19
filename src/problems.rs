@@ -47,13 +47,14 @@ mod problem045;
 mod problem046;
 mod problem047;
 mod problem048;
-mod problem051;
-mod problem067;
 mod problem049;
 mod problem050;
+mod problem051;
 mod problem052;
 mod problem053;
 mod problem054;
+mod problem055;
+mod problem067;
 
 pub trait Problem {
     fn new() -> Self;
@@ -143,6 +144,7 @@ pub fn get_result(number: i32) -> i64 {
         52 => problem052::Problema::new().get_result(),
         53 => problem053::Problema::new().get_result(),
         54 => problem054::Problema::new().get_result(),
+        55 => problem055::Problema::new().get_result(),
         67 => problem067::Problema::new().get_result(),
         _ => 0,
     }
@@ -204,6 +206,7 @@ pub fn get_title(number: i32) -> String {
         52 => problem052::Problema::new().get_title(),
         53 => problem053::Problema::new().get_title(),
         54 => problem054::Problema::new().get_title(),
+        55 => problem055::Problema::new().get_title(),
         67 => problem067::Problema::new().get_title(),
         _ => String::from("Not implemented yet!"),
     }
@@ -341,11 +344,7 @@ pub fn get_factorial(number: i32) -> i32 {
 }
 
 pub fn power_vec(number: i32, power: i32) -> Vec<u8> {
-    let mut vec_num: Vec<u8> = number
-        .to_string()
-        .chars()
-        .map(|b| b as u8 - b'0')
-        .collect();
+    let mut vec_num: Vec<u8> = number.to_string().chars().map(|b| b as u8 - b'0').collect();
     vec_num.reverse();
 
     for _ in 1..power {

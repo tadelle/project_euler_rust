@@ -16,7 +16,7 @@
 //! HINT: Some products can be obtained in more
 //! than one way so be sure to only include
 //! it once in your sum.
-use std::{collections::HashMap, cmp::Ordering};
+use std::{cmp::Ordering, collections::HashMap};
 
 use super::Problem;
 
@@ -42,7 +42,7 @@ fn get_result_problem() -> i64 {
                             break;
                         }
                     }
-                },
+                }
             }
 
             if is_pandigital {

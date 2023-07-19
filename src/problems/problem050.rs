@@ -1,29 +1,28 @@
 //! Consecutive prime sum
-//! 
+//!
 //! Problem 50
 //! The prime 41, can be written as the
 //! sum of six consecutive primes:
-//! 
+//!
 //! 41 = 2 + 3 + 5 + 7 + 11 + 13
 //! This is the longest sum of consecutive
 //! primes that adds to a prime below one-hundred.
-//! 
+//!
 //! The longest sum of consecutive primes below
 //! one-thousand that adds to a prime,
 //! contains 21 terms, and is equal to 953.
-//! 
+//!
 //! Which prime, below one-million, can be written
 //! as the sum of the most consecutive primes?
 use std::collections::HashMap;
 
-use super::{Problem, get_primes_eratostenes};
+use super::{get_primes_eratostenes, Problem};
 
 crate::base_problem!(997651, "Consecutive prime sum");
 
 fn get_result_problem() -> i64 {
     let limit = 1_000_000;
-    let primes: HashMap<i32, i32> = 
-        get_primes_eratostenes(limit)
+    let primes: HashMap<i32, i32> = get_primes_eratostenes(limit)
         .into_iter()
         .map(|p| (p, 0))
         .collect();
