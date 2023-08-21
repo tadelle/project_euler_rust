@@ -55,8 +55,8 @@ mod problem053;
 mod problem054;
 mod problem055;
 mod problem056;
-mod problem067;
 mod problem057;
+mod problem067;
 
 pub trait Problem {
     fn new() -> Self;
@@ -370,17 +370,20 @@ pub fn add_vec(vec1: &Vec<u8>, vec2: &Vec<u8>) -> Vec<u8> {
     let mut remainder: u8 = 0;
     let mut vec_res: Vec<u8> = Vec::new();
 
+    let v1 = if vec1.len() > vec2.len() { vec1 } else { vec2 };
+    let v2 = if vec1.len() > vec2.len() { vec2 } else { vec1 };
+
     let mut index = 0;
-    for digit in vec1 {
-        let vec2_digit = if vec2.len() > index { vec2[index] } else { 0 };
+    for digit in v1 {
+        let vec2_digit = if v2.len() > index { v2[index] } else { 0 };
         result = digit + vec2_digit + remainder;
         vec_res.push(result % 10);
         remainder = result / 10;
         index += 1;
     }
-    while remainder > 0 || vec2.len() > index {
-        if index < vec2.len() {
-            result = vec2[index] + remainder;
+    while remainder > 0 || v2.len() > index {
+        if index < v2.len() {
+            result = v2[index] + remainder;
             vec_res.push(result % 10);
             remainder = result / 10;
         } else {
