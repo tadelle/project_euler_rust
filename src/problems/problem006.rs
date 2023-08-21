@@ -18,9 +18,9 @@ use super::Problem;
 crate::base_problem!(25164150, "Sum square difference");
 
 fn get_result_problem() -> i64 {
-    let sum_of_squares = (1..101).map(|n| n * n).sum::<i32>();
+    let sum_of_squares = (1..=100).map(|n| n * n).sum::<i32>();
 
-    let sum = (1..101).sum::<i32>();
+    let sum = (1..=100).sum::<i32>();
 
     ((sum * sum) - sum_of_squares) as i64
 }

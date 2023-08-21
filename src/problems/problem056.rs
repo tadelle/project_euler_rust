@@ -17,7 +17,7 @@ crate::base_problem!(972, "Powerful Digit Sum");
 // é suficiente para verificar a maior soma.
 
 fn get_result_problem() -> i64 {
-    (1..100)
+    (94..100)
         .map(|a| {
             (94..100)
                 .map(|b| power_vec(a, b).into_iter().map(|n| n as i32).sum::<i32>())
