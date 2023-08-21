@@ -56,6 +56,7 @@ mod problem054;
 mod problem055;
 mod problem056;
 mod problem067;
+mod problem057;
 
 pub trait Problem {
     fn new() -> Self;
@@ -147,6 +148,7 @@ pub fn get_result(number: i32) -> i64 {
         54 => problem054::Problema::new().get_result(),
         55 => problem055::Problema::new().get_result(),
         56 => problem056::Problema::new().get_result(),
+        57 => problem057::Problema::new().get_result(),
         67 => problem067::Problema::new().get_result(),
         _ => 0,
     }
@@ -210,6 +212,7 @@ pub fn get_title(number: i32) -> String {
         54 => problem054::Problema::new().get_title(),
         55 => problem055::Problema::new().get_title(),
         56 => problem056::Problema::new().get_title(),
+        57 => problem057::Problema::new().get_title(),
         67 => problem067::Problema::new().get_title(),
         _ => String::from("Not implemented yet!"),
     }
@@ -369,7 +372,8 @@ pub fn add_vec(vec1: &Vec<u8>, vec2: &Vec<u8>) -> Vec<u8> {
 
     let mut index = 0;
     for digit in vec1 {
-        result = digit + vec2[index] + remainder;
+        let vec2_digit = if vec2.len() > index { vec2[index] } else { 0 };
+        result = digit + vec2_digit + remainder;
         vec_res.push(result % 10);
         remainder = result / 10;
         index += 1;
