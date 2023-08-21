@@ -1,24 +1,24 @@
 //! Square Root Convergents
 //! https://projecteuler.net/problem=57
 //!
-//! It is possible to show that the square root of 
+//! It is possible to show that the square root of
 //! two can be expressed as an infinite continued fraction.
-//! 
+//!
 //! SQRT(2) = 1 + 1 / (2 + (1 / 2 + (1 / 2 + (...
-//! 
+//!
 //! By expanding this for the first four iterations, we get:
-//! 
+//!
 //! 3/2 = 1.5
 //! 7/5 = 1.4
 //! 17/12 = 1.41666...
 //! 41/29 = 1.41379...
-//! 
+//!
 //! The next three expansions are
 //! 99/70, 239/169, and 577/408, but the eighth expansion, 1393/985,
-//! is the first example where the number of digits in the numerator 
+//! is the first example where the number of digits in the numerator
 //! exceeds the number of digits in the denominator.
-//! 
-//! In the first one-thousand expansions, how many fractions contain 
+//!
+//! In the first one-thousand expansions, how many fractions contain
 //! a numerator with more digits than the denominator?
 use super::{add_vec, Problem};
 
@@ -48,22 +48,18 @@ fn get_result_problem() -> i64 {
         numerator_previus = numerator;
         denominator_previus = denominator;
 
-        numerator =  num1;
+        numerator = num1;
         denominator = den;
 
         if numerator.len() > denominator.len() {
             counter += 1;
         }
-
     }
 
     counter as i64
-
 }
 
 fn get_next_expansion(previus: &Vec<u8>, actual: &Vec<u8>) -> Vec<u8> {
-
     let new_vec = add_vec(actual, actual);
-       
     add_vec(&new_vec, previus)
 }
