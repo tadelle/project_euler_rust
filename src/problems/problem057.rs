@@ -24,17 +24,7 @@ use super::{add_vec, Problem};
 
 crate::base_problem!(153, "Square Root Convergents");
 
-// Há um padrão onde a cada seis números há uma repetição
-// da soma anterior mais um incremento, ou no mínino mantendo
-// o valor anterior. Nesse caso, lendo as seis últimas potências
-// é suficiente para verificar a maior soma.
-
 fn get_result_problem() -> i64 {
-    // let mut numerator_previus: Vec<u8> = vec![b'1'];
-    // let mut denominator_previus: Vec<u8> = vec![b'1'];
-    // let mut numerator: Vec<u8> = vec![b'3'];
-    // let mut denominator: Vec<u8> = vec![b'2'];
-
     let mut numerator_previus: Vec<u8> = vec![1];
     let mut denominator_previus: Vec<u8> = vec![1];
     let mut numerator: Vec<u8> = vec![3];
