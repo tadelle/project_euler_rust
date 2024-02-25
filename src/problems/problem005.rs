@@ -13,9 +13,7 @@ crate::base_problem!(232792560, "Smallest multiple");
 
 fn get_result_problem() -> i64 {
     let mut result = 1;
-    let mut divisors = vec![
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-    ];
+    let mut divisors = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
     let mut divisor = 2;
     let mut is_used = false;
 

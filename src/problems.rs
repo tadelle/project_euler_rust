@@ -58,6 +58,8 @@ mod problem056;
 mod problem057;
 mod problem058;
 mod problem067;
+mod problem059;
+mod problem060;
 
 pub trait Problem {
     fn new() -> Self;
@@ -151,6 +153,8 @@ pub fn get_result(number: i32) -> i64 {
         56 => problem056::Problema::new().get_result(),
         57 => problem057::Problema::new().get_result(),
         58 => problem058::Problema::new().get_result(),
+        59 => problem059::Problema::new().get_result(),
+        60 => problem060::Problema::new().get_result(),
         67 => problem067::Problema::new().get_result(),
         _ => 0,
     }
@@ -216,6 +220,8 @@ pub fn get_title(number: i32) -> String {
         56 => problem056::Problema::new().get_title(),
         57 => problem057::Problema::new().get_title(),
         58 => problem058::Problema::new().get_title(),
+        59 => problem059::Problema::new().get_title(),
+        60 => problem060::Problema::new().get_title(),
         67 => problem067::Problema::new().get_title(),
         _ => String::from("Not implemented yet!"),
     }
@@ -224,9 +230,11 @@ pub fn get_title(number: i32) -> String {
 pub fn is_prime(number: i32) -> bool {
     if number <= 1 {
         return false;
-    } else if number == 2 {
+    }
+    if number == 2 {
         return true;
-    } else if number % 2 == 0 {
+    }
+    if number % 2 == 0 {
         return false;
     }
 
